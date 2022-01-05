@@ -1,4 +1,4 @@
-package ±â¸»°úÁ¦;
+package ê¸°ë§ê³¼ì œ;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -13,34 +13,34 @@ public class Oval extends Shape{
 		this.height = height;
 	}
 	
-	public void draw(Graphics g) { //Å¸¿ø ±×¸®±â
+	public void draw(Graphics g) { //íƒ€ì› ê·¸ë¦¬ê¸°
 		g.drawOval(x, y, width, height); 
 	}
-	public void copy(Graphics g, ArrayList<Shape> shapes) { //Å¸¿ø º¹»ç ¸Ş¼Òµå
-		g.drawOval(x + 10, y+ 10, width, height); //°¡·Î 10, ¼¼·Î 10 ÀÌµ¿
+	public void copy(Graphics g, ArrayList<Shape> shapes) { //íƒ€ì› ë³µì‚¬ ë©”ì†Œë“œ
+		g.drawOval(x + 10, y+ 10, width, height); //ê°€ë¡œ 10, ì„¸ë¡œ 10 ì´ë™
 		shapes.add(new Oval(x+10, y+10, width, height));
 	}
-	public boolean clickedIn(int x3 ,int y3) { //Å¸¿ø ³»ºÎ¿¡ ÀÖ´ÂÁö °Ë»ç
+	public boolean clickedIn(int x3 ,int y3) { //íƒ€ì› ë‚´ë¶€ì— ìˆëŠ”ì§€ ê²€ì‚¬
 		if((x3 > x) && (x3 < x+width) && (y3 > y) && (y3 < y + height))
 			return true;
 		else
 			return false;
 	}
-	public void Control_Point(Graphics g, Rectangle rect[]) { //Control_Point »ı¼ºÇÏ´Â ¸Ş¼Òµå
+	public void Control_Point(Graphics g, Rectangle rect[]) { //Control_Point ìƒì„±í•˜ëŠ” ë©”ì†Œë“œ
 		g.drawRect(x-2, y-2, 4, 4);
 		g.drawRect(x + width -2, y + height -2, 4, 4);
-		rect[0] = new Rectangle(x-2, y-2, 4, 4); //rect[0]¿¡ ÀúÀå
-		rect[1] = new Rectangle(x + width -2, y + height -2, 4, 4); //rect[1]¿¡ ÀúÀå
+		rect[0] = new Rectangle(x-2, y-2, 4, 4); //rect[0]ì— ì €ì¥
+		rect[1] = new Rectangle(x + width -2, y + height -2, 4, 4); //rect[1]ì— ì €ì¥
 	}
-	public Shape move(Graphics g, int offx, int offy, int endx, int endy) { //»ç°¢Çü ÀÌµ¿
-		x = endx - offx;  //a,b´Â µµÇüÀÇ ³»ºÎ¸¦ Å¬¸¯ÇßÀ»¶§ ¾îµğ¿¡ Å¬¸¯Çß´ÂÁö ÆÇ´Ü, ¹İ¿µÇØ¼­ ÀÌµ¿ÇÑ´Ù.
+	public Shape move(Graphics g, int offx, int offy, int endx, int endy) { //ì‚¬ê°í˜• ì´ë™
+		x = endx - offx;  //a,bëŠ” ë„í˜•ì˜ ë‚´ë¶€ë¥¼ í´ë¦­í–ˆì„ë•Œ ì–´ë””ì— í´ë¦­í–ˆëŠ”ì§€ íŒë‹¨, ë°˜ì˜í•´ì„œ ì´ë™í•œë‹¤.
 		y = endy - offy;
 		
 		g.drawOval(x, y, width, height);
-		return (new Oval(x, y, width, height)); //»ç°¢Çü ¹İÈ¯
+		return (new Oval(x, y, width, height)); //ì‚¬ê°í˜• ë°˜í™˜
 	}
-	public Shape SizeLeft(Graphics g,int endx, int endy) { //¿ŞÂÊ ¹Ú½º¸¦ µå·¡±×ÇßÀ» ¶§
-		if(((x+width) <= endx) && ((y+height) <= endy)) { //¾Æ·¡ÂÊ ¹Ú½ºº¸´Ù ¹ØÀ¸·Î µå·¡±×ÇßÀ» ¶§
+	public Shape SizeLeft(Graphics g,int endx, int endy) { //ì™¼ìª½ ë°•ìŠ¤ë¥¼ ë“œë˜ê·¸í–ˆì„ ë•Œ
+		if(((x+width) <= endx) && ((y+height) <= endy)) { //ì•„ë˜ìª½ ë°•ìŠ¤ë³´ë‹¤ ë°‘ìœ¼ë¡œ ë“œë˜ê·¸í–ˆì„ ë•Œ
 			width = endx - x - width;
 			height = endy - y - height;
 			x = endx;
@@ -57,8 +57,8 @@ public class Oval extends Shape{
 		}
 	}
 
-	public Shape SizeRight(Graphics g,int endx, int endy) { //¾Æ·¡ÂÊ ¹Ú½º¸¦ µå·¡±×ÇßÀ» ¶§
-		if((endx <= x) && (endy<= y)) { //À§ÂÊ ¹Ú½ºº¸´Ù À§·Î µå·¡±×ÇßÀ» ¶§
+	public Shape SizeRight(Graphics g,int endx, int endy) { //ì•„ë˜ìª½ ë°•ìŠ¤ë¥¼ ë“œë˜ê·¸í–ˆì„ ë•Œ
+		if((endx <= x) && (endy<= y)) { //ìœ„ìª½ ë°•ìŠ¤ë³´ë‹¤ ìœ„ë¡œ ë“œë˜ê·¸í–ˆì„ ë•Œ
 			width = x - endx;
 			height = y - endy;
 			x = endx;
