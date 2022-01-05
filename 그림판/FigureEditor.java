@@ -1,4 +1,4 @@
-package ±â¸»°úÁ¦;
+package ê¸°ë§ê³¼ì œ;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -19,7 +19,7 @@ class FigureEditorFrame extends JFrame {
 	
 	FigureEditorFrame() {
 		setSize(500,300);
-		setTitle("±â¸» ÇÁ·ÎÁ§Æ®");
+		setTitle("ê¸°ë§ í”„ë¡œì íŠ¸");
 		panelA = new PanelA();
 		panelC = new PanelC(panelA);
 		add(panelA, BorderLayout.CENTER);
@@ -30,19 +30,19 @@ class FigureEditorFrame extends JFrame {
 
 class PanelA extends JPanel {
 	
-	ArrayList<Shape> shapes = new ArrayList<Shape>(); //µµÇüµéÀ» ´ãÀ» ArrayList shapes
-	Rectangle rect[] = new Rectangle[2]; //Control_Point¸¦ ´ãÀ» Rectangle ¹è¿­ rect[]
+	ArrayList<Shape> shapes = new ArrayList<Shape>(); //ë„í˜•ë“¤ì„ ë‹´ì„ ArrayList shapes
+	Rectangle rect[] = new Rectangle[2]; //Control_Pointë¥¼ ë‹´ì„ Rectangle ë°°ì—´ rect[]
 	
 	JLabel label;
 	String selectedBtn="";
 	Point start=null, end=null;
-	int x3, y3; //clickedIn¿¡ ³ÖÀ» Å¬¸¯ÇßÀ» ¶§ÀÇ ÁÂÇ¥
-	char cmd = 'N'; //µµÇüÀ» ±×¸±¶§ ¾î¶² µµÇüÀ» ±×¸±Áö¿¡ ´ëÇÑ charÇü º¯¼ö
+	int x3, y3; //clickedInì— ë„£ì„ í´ë¦­í–ˆì„ ë•Œì˜ ì¢Œí‘œ
+	char cmd = 'N'; //ë„í˜•ì„ ê·¸ë¦´ë•Œ ì–´ë–¤ ë„í˜•ì„ ê·¸ë¦´ì§€ì— ëŒ€í•œ charí˜• ë³€ìˆ˜
 	
 	PanelA() {
-		setBackground(Color.YELLOW); //¹è°æ yellow
+		setBackground(Color.YELLOW); //ë°°ê²½ yellow
 		addMouseListener(new MyMouseListener());
-		addMouseMotionListener(new MyMouseListener());  //¸¶¿ì½º¸¦ ÀĞ´Â ¸®½º³Ê ºÎÂø 
+		addMouseMotionListener(new MyMouseListener());  //ë§ˆìš°ìŠ¤ë¥¼ ì½ëŠ” ë¦¬ìŠ¤ë„ˆ ë¶€ì°© 
 	}
 	
 
@@ -61,12 +61,12 @@ class PanelA extends JPanel {
         }
         public void mouseDragged(MouseEvent e) {
             end = e.getPoint();
-            repaint(); // ÆĞ³ÎÀÇ ±×¸®±â ¿äÃ» ÁÖ¸ñ
+            repaint(); // íŒ¨ë„ì˜ ê·¸ë¦¬ê¸° ìš”ì²­ ì£¼ëª©
         }
         public void mouseReleased(MouseEvent e) {
         	end = e.getPoint();
         	
-        	//¸¶¿ì½º·Î ±×¸° °ªÀ» ÀÔ·Â
+        	//ë§ˆìš°ìŠ¤ë¡œ ê·¸ë¦° ê°’ì„ ì…ë ¥
         	int x = Math.min(start.x, end.x);
             int y = Math.min(start.y, end.y);
             int width = Math.abs(start.x - end.x);
@@ -74,19 +74,19 @@ class PanelA extends JPanel {
             int x2 = end.x;
             int y2 = end.y;
             
-            if(cmd == 'R') { //¹öÆ°¿¡ '»ç°¢'ÀÌ ÀÔ·ÂµÇ¾úÀ» ¶§
-            	Shape s = new Rectangle(x, y, width, height); // ¾÷Ä³½ºÆÃ
-				shapes.add(s); // shapes¿¡ s Ãß°¡
-				cmd = 'N'; //´Ù½Ã cmd¸¦ 'N'À¸·Î ¹Ù²ã¼­ µµÇüÀ» ´Ù½Ã ±×¸± ¶§ ¹öÆ° ´Ù½Ã Å¬¸¯ÇÏµµ·Ï
+            if(cmd == 'R') { //ë²„íŠ¼ì— 'ì‚¬ê°'ì´ ì…ë ¥ë˜ì—ˆì„ ë•Œ
+            	Shape s = new Rectangle(x, y, width, height); // ì—…ìºìŠ¤íŒ…
+				shapes.add(s); // shapesì— s ì¶”ê°€
+				cmd = 'N'; //ë‹¤ì‹œ cmdë¥¼ 'N'ìœ¼ë¡œ ë°”ê¿”ì„œ ë„í˜•ì„ ë‹¤ì‹œ ê·¸ë¦´ ë•Œ ë²„íŠ¼ ë‹¤ì‹œ í´ë¦­í•˜ë„ë¡
             }
-            else if(cmd == 'O') { //¹öÆ°¿¡ 'Å¸¿ø'ÀÌ ÀÔ·ÂµÇ¾úÀ» ¶§
-            	Shape s = new Oval(x,y,width,height); //¾÷Ä³½ºÆÃ
-            	shapes.add(s); //shapes¿¡ s Ãß°¡
+            else if(cmd == 'O') { //ë²„íŠ¼ì— 'íƒ€ì›'ì´ ì…ë ¥ë˜ì—ˆì„ ë•Œ
+            	Shape s = new Oval(x,y,width,height); //ì—…ìºìŠ¤íŒ…
+            	shapes.add(s); //shapesì— s ì¶”ê°€
             	cmd = 'N';
             }
             else if(cmd == 'L'){
-            	Shape s = new Line(x,y,x2,y2); //¾÷Ä³½ºÆÃ
-            	shapes.add(s); // shapes¿¡ sÃß°¡
+            	Shape s = new Line(x,y,x2,y2); //ì—…ìºìŠ¤íŒ…
+            	shapes.add(s); // shapesì— sì¶”ê°€
             	cmd = 'N';
             }
             repaint(); 
@@ -95,51 +95,51 @@ class PanelA extends JPanel {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if(start == null) // Å¸¿øÀÌ ¸¸µé¾îÁöÁö ¾Ê¾ÒÀ½
+        if(start == null) // íƒ€ì›ì´ ë§Œë“¤ì–´ì§€ì§€ ì•Šì•˜ìŒ
             return;
-        g.setColor(Color.BLUE); // ÆÄ¶õ»ö ¼±ÅÃ
-        //¸¶¿ì½º·Î ±×¸° °ªÀ» ÀÔ·Â
+        g.setColor(Color.BLUE); // íŒŒë€ìƒ‰ ì„ íƒ
+        //ë§ˆìš°ìŠ¤ë¡œ ê·¸ë¦° ê°’ì„ ì…ë ¥
         int x = Math.min(start.x, end.x);
         int y = Math.min(start.y, end.y);
         int width = Math.abs(start.x - end.x);
         int height = Math.abs(start.y - end.y);
         int x2 = end.x;
         int y2 = end.y;
-        if(cmd == 'R') { //¹öÆ°¿¡ '»ç°¢'ÀÌ ÀÔ·ÂµÇ¾úÀ» ¶§
+        if(cmd == 'R') { //ë²„íŠ¼ì— 'ì‚¬ê°'ì´ ì…ë ¥ë˜ì—ˆì„ ë•Œ
         	g.drawRect(x, y, width, height);
-        }else if(cmd == 'O') { //¹öÆ°¿¡ 'Å¸¿ø'ÀÌ ÀÔ·ÂµÇ¾úÀ» ¶§
+        }else if(cmd == 'O') { //ë²„íŠ¼ì— 'íƒ€ì›'ì´ ì…ë ¥ë˜ì—ˆì„ ë•Œ
         	g.drawOval(x, y, width, height);
-        }else if(cmd == 'L') {//¹öÆ°¿¡ 'Á÷¼±'ÀÌ ÀÔ·ÂµÇ¾úÀ» ¶§
+        }else if(cmd == 'L') {//ë²„íŠ¼ì— 'ì§ì„ 'ì´ ì…ë ¥ë˜ì—ˆì„ ë•Œ
         	g.drawLine(x, y, x2, y2);
-        }else if(selectedBtn == "ºÒ·¯¿À±â") { //¹öÆ°¿¡ 'ºÒ·¯¿À±â'°¡ ÀÔ·ÂµÇ¾úÀ» ¶§
-        	loadShapes(); //±×¸²ÆÇ¿¡ ÀúÀåµÈ µµÇüµéÀ» ºÒ·¯¿Â´Ù.
+        }else if(selectedBtn == "ë¶ˆëŸ¬ì˜¤ê¸°") { //ë²„íŠ¼ì— 'ë¶ˆëŸ¬ì˜¤ê¸°'ê°€ ì…ë ¥ë˜ì—ˆì„ ë•Œ
+        	loadShapes(); //ê·¸ë¦¼íŒì— ì €ì¥ëœ ë„í˜•ë“¤ì„ ë¶ˆëŸ¬ì˜¨ë‹¤.
         }
         for(int i=0; i<shapes.size();i++) {
-        	//Å¬¸¯ÇÑ À§Ä¡°¡ i¹øÂ° µµÇüÀÇ ³»ºÎÀÌ°í, µµÇü ±×¸®±â°¡ ¼±ÅÃµÇ¾îÀÖÁö ¾ÊÀ» ¶§
+        	//í´ë¦­í•œ ìœ„ì¹˜ê°€ ië²ˆì§¸ ë„í˜•ì˜ ë‚´ë¶€ì´ê³ , ë„í˜• ê·¸ë¦¬ê¸°ê°€ ì„ íƒë˜ì–´ìˆì§€ ì•Šì„ ë•Œ
         	if(shapes.get(i).clickedIn(x3, y3) && cmd =='N') {
-        		if(selectedBtn == "º¹»ç") { //¹öÆ°¿¡ 'º¹»ç'°¡ ÀÔ·ÂµÇ¾îÀÖÀ» ¶§
+        		if(selectedBtn == "ë³µì‚¬") { //ë²„íŠ¼ì— 'ë³µì‚¬'ê°€ ì…ë ¥ë˜ì–´ìˆì„ ë•Œ
         			shapes.get(i).copy(g, shapes);
         		}
-        		else if(selectedBtn == "»èÁ¦") {//¹öÆ°¿¡ '»èÁ¦'°¡ ÀÔ·ÂµÇ¾îÀÖÀ» ¶§
+        		else if(selectedBtn == "ì‚­ì œ") {//ë²„íŠ¼ì— 'ì‚­ì œ'ê°€ ì…ë ¥ë˜ì–´ìˆì„ ë•Œ
         			shapes.remove(i);
         		}
-        		else { //¹öÆ°¿¡ ¾Æ¹«°Íµµ ÀÔ·ÂµÇ¾îÀÖÁö ¾ÊÀ» ¶§
+        		else { //ë²„íŠ¼ì— ì•„ë¬´ê²ƒë„ ì…ë ¥ë˜ì–´ìˆì§€ ì•Šì„ ë•Œ
         			shapes.get(i).Control_Point(g, rect);		
         		}
         		break;
 		}
     }
         for (int i=0; i<shapes.size(); i++) {
-        	shapes.get(i).draw(g); //ÀÌ ÄÚµå°¡ ¾øÀ¸¸é ±×·ÁÁø ÈÄ µµÇüÀÌ ³²¾ÆÀÖÁö ¾ÈÈç¤¤´Ù.
+        	shapes.get(i).draw(g); //ì´ ì½”ë“œê°€ ì—†ìœ¼ë©´ ê·¸ë ¤ì§„ í›„ ë„í˜•ì´ ë‚¨ì•„ìˆì§€ ì•ˆí”ã„´ë‹¤.
         }
 }
-    public void saveShapes() { //±×¸²ÆÇ¿¡ µµÇüÀ» ÀúÀåÇÏ´Â ¸Ş¼Òµå
+    public void saveShapes() { //ê·¸ë¦¼íŒì— ë„í˜•ì„ ì €ì¥í•˜ëŠ” ë©”ì†Œë“œ
     	ObjectOutputStream out = null;
     	try {
 			out = new ObjectOutputStream(new FileOutputStream("shapes.dat"));
 			out.writeObject(shapes);
 			out.close();
-			System.out.print("ÀúÀåµÇ¾ú½À´Ï´Ù.");
+			System.out.print("ì €ì¥ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -148,13 +148,13 @@ class PanelA extends JPanel {
 			e.printStackTrace();
 		}
     }
-    public void loadShapes() {  //±×¸²ÆÇ¿¡ ÀúÀåµÈ µµÇüÀ» ºÒ·¯¿À´Â ¸Ş¼Òµå
+    public void loadShapes() {  //ê·¸ë¦¼íŒì— ì €ì¥ëœ ë„í˜•ì„ ë¶ˆëŸ¬ì˜¤ëŠ” ë©”ì†Œë“œ
     	ObjectInputStream in = null;
     	try {
 			in = new ObjectInputStream(new FileInputStream("shapes.dat"));
 			shapes = (ArrayList<Shape>)in.readObject();
 			in.close();
-			System.out.print("·ÎµåµÇ¾ú½À´Ï´Ù. ");
+			System.out.print("ë¡œë“œë˜ì—ˆìŠµë‹ˆë‹¤. ");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -172,13 +172,13 @@ class PanelB extends JPanel {
 	PanelA panelA;
 	PanelB(PanelA panelA) {
 		this.panelA = panelA;
-		setBackground(Color.BLUE); //¹è°æ»ö º¯°æ
+		setBackground(Color.BLUE); //ë°°ê²½ìƒ‰ ë³€ê²½
 		setLayout(new GridLayout(5,1,5,5));
-		JButton b1 = new JButton("»ç°¢");
-		JButton b2 = new JButton("Å¸¿ø");
-		JButton b3 = new JButton("Á÷¼±"); // ¹öÆ°µé Ãß°¡
-		JButton b4 = new JButton("ÀúÀå");
-		JButton b5 = new JButton("ºÒ·¯¿À±â");
+		JButton b1 = new JButton("ì‚¬ê°");
+		JButton b2 = new JButton("íƒ€ì›");
+		JButton b3 = new JButton("ì§ì„ "); // ë²„íŠ¼ë“¤ ì¶”ê°€
+		JButton b4 = new JButton("ì €ì¥");
+		JButton b5 = new JButton("ë¶ˆëŸ¬ì˜¤ê¸°");
 		add(b1);
 		add(b2);
 		add(b3);
@@ -188,7 +188,7 @@ class PanelB extends JPanel {
 		ActionListener listner = new MyActionListener();
 		b1.addActionListener(listner);
 		b2.addActionListener(listner);
-		b3.addActionListener(listner); // ¹öÆ°¿¡ ¾×¼Ç¸®½º³Ê ´Ş±â
+		b3.addActionListener(listner); // ë²„íŠ¼ì— ì•¡ì…˜ë¦¬ìŠ¤ë„ˆ ë‹¬ê¸°
 		b4.addActionListener(listner);
 		b5.addActionListener(listner);
 	}
@@ -198,14 +198,14 @@ class PanelB extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			String actionCmd = e.getActionCommand();
 			panelA.selectedBtn = actionCmd;
-			if(e.getActionCommand() == "ÀúÀå") { //¹öÆ°¿¡ 'ÀúÀå'ÀÌ ´­·ÈÀ»¶§
-				panelA.saveShapes(); //ÆÄÀÏ¿¡ ±×¸²µéÀ» ÀúÀåÇÑ´Ù.
-			} //¹öÆ°µéÀÌ ´­·ÈÀ» ¶§ '»ç°¢'Àº 'R', 'Å¸¿ø'Àº 'O', 'Á÷¼±'Àº L·Î cmd¸¦ ¹Ù²Û´Ù.
-			if(e.getActionCommand() == "»ç°¢") {
+			if(e.getActionCommand() == "ì €ì¥") { //ë²„íŠ¼ì— 'ì €ì¥'ì´ ëˆŒë ¸ì„ë•Œ
+				panelA.saveShapes(); //íŒŒì¼ì— ê·¸ë¦¼ë“¤ì„ ì €ì¥í•œë‹¤.
+			} //ë²„íŠ¼ë“¤ì´ ëˆŒë ¸ì„ ë•Œ 'ì‚¬ê°'ì€ 'R', 'íƒ€ì›'ì€ 'O', 'ì§ì„ 'ì€ Lë¡œ cmdë¥¼ ë°”ê¾¼ë‹¤.
+			if(e.getActionCommand() == "ì‚¬ê°") {
 				panelA.cmd = 'R';
-			}else if(e.getActionCommand() == "Å¸¿ø") {
+			}else if(e.getActionCommand() == "íƒ€ì›") {
 				panelA.cmd = 'O';
-			}else if(e.getActionCommand() == "Á÷¼±") {
+			}else if(e.getActionCommand() == "ì§ì„ ") {
 				panelA.cmd = 'L';
 			}else {
 				panelA.cmd = 'N';
